@@ -1,0 +1,11 @@
+Django
+djangorestframework
+djangorestframework-simplejwt
+djoser
+Pillow==6.2.0
+psycopg2==2.8.2
+requests==2.22.0
+django-rest-swagger
+validate_email
+drf-spectacular
+openpyxl
