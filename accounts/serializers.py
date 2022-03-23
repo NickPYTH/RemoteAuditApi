@@ -3,7 +3,6 @@ from rest_framework import serializers
 from .models import Profile, Company, AuditorCompany
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import check_password, make_password
-from django.utils import timezone
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
