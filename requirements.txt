@@ -9,3 +9,4 @@ django-rest-swagger
 validate_email
 drf-spectacular
 openpyxl
+django-cors-headers
