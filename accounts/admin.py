@@ -8,6 +8,7 @@ admin.site.register(Document)
 admin.site.register(EmployerDocument)
 admin.site.register(Employer)
 admin.site.register(DocumentStatus)
+admin.site.register(Invites)
 
 admin.site.site_header = "Admin panel"
 

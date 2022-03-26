@@ -85,16 +85,26 @@ class Profile(models.Model):
 
 
 class Document(models.Model):
-    name = models.CharField(max_length=200, verbose_name="Наименование документа")
-    company = models.ForeignKey(Company, on_delete=models.CASCADE, verbose_name="Документ компании")
-    link = models.CharField(max_length=200, verbose_name="Ссылка на файл в хранилище")
-    status = models.ForeignKey(DocumentStatus, on_delete=models.CASCADE, verbose_name="Статус документа")
+    name = models.CharField(max_length=200, verbose_name="Наименование документа", blank=True, null=True)
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, verbose_name="Документ компании", blank=True, null=True)
+    link = models.CharField(max_length=200, verbose_name="Ссылка на файл в хранилище", blank=True, null=True)
+    file = models.FileField(upload_to='')
+    status = models.ForeignKey(DocumentStatus, on_delete=models.CASCADE, verbose_name="Статус документа", blank=True, null=True)
     comment = models.CharField(max_length=600, blank=True, null=True, verbose_name="Замечания")
     last_edit_date = models.CharField(max_length=200, blank=True, null=True, verbose_name="Последняя дата изменения")
     last_edit_by = models.ForeignKey(Employer, on_delete=models.CASCADE, blank=True, null=True, verbose_name="Кто вносил последнии правки")
 
     def __str__(self):
-        return self.name + " " + self.company.company_name
+        if self.company is not None:
+            return self.name + " " + self.company.company_name
+        else:
+            return self.name + " "
+
+
+class Invites(models.Model):
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, blank=True, null=True)
+    auditor = models.ForeignKey(AuditorCompany, on_delete=models.CASCADE, blank=True, null=True)
+    code = models.CharField(max_length=100, blank=True, null=True)
 
 
 class EmployerDocument(models.Model):
